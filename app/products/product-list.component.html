@@ -1,0 +1,61 @@
+
+    
+       <h2 align="center"> {{Title}}</h2>
+   
+<div class="panel-body">
+    <div class="row container">
+        <div class="filt"><h3>Filter by:</h3></div><br>
+        <div class="col-md-4 input">
+            <input type="text"
+             [(ngModel)]="listFilter">
+        </div>
+   <div class="row">
+       <div class="input">
+           <h3 align="center">Filter by:{{listFilter}}</h3>
+       </div>
+   </div>
+  <div class="table-responsive container">
+     <table *ngIf="products && products.length"  class='table table-hover'
+     >
+     
+         <thead>
+             <tr>
+                 <th>
+                     <button class="btn btn-primary"
+                         (click)='toggleImage()'>
+                         {{showImage ?'Hide':'Show'}} Images  
+                    </button>
+                 </th>  
+            <th>Product</th>
+            <th>Code</th>
+            <th>Available</th>
+            <th>Price</th>
+            <th>5 Star Rating</th>
+         </tr>
+         </thead>
+     <tbody>
+         <tr *ngFor='let product of products' >
+             <td>
+                 <img *ngIf="showImage" 
+                  [src]='product.imageUrl'
+                 [title]='product.productName'
+                 [style.width.px]='imageWidth'
+                  [style.margin.px]='imageMargin'
+                 >
+             </td>
+             <td>{{product.productName}}</td>
+             <td>{{product.productCode}}</td>
+             <td>{{product.releaseDate}}</td>
+             <td>{{product.productPrice|currency:'USD':true:'1.2-2'}}</td>
+             <td><stars></stars></td>
+             
+         </tr>
+     </tbody>
+     </table> 
+     </div>
+  </div>
+    </div> 
+
+   
+
+
